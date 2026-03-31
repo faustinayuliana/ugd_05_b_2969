@@ -31,7 +31,7 @@ export default function RegisterPage() {
     generateCaptcha();
   }, []);
 
-  // POIN 6: Rumus Password Strength dari Dosen
+
   useEffect(() => {
     const pass = formData.password;
     const score = Math.min(
@@ -46,27 +46,20 @@ export default function RegisterPage() {
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validasi Username (Poin 2a)
     if (formData.username.length < 3 || formData.username.length > 8) {
       return toast.error("Username minimal 3 dan maksimal 8 karakter!");
     }
-
-    // Validasi Nomor Telepon (Poin 2c)
     if (formData.phone.length < 10 || !/^\d+$/.test(formData.phone)) {
       return toast.error("Nomor telepon minimal 10 angka!");
     }
 
-    // Validasi Password (Poin 2d)
     if (formData.password.length < 8) {
       return toast.error("Password minimal 8 karakter!");
     }
 
-    // Validasi Confirm Password (Poin 5)
     if (formData.password !== formData.confirmPassword) {
       return toast.error("Konfirmasi password tidak cocok!");
     }
-
-    // Validasi Captcha (Poin 2e)
     if (formData.captchaInput !== captcha) {
       generateCaptcha();
       return toast.error("Captcha salah!");
@@ -110,7 +103,7 @@ export default function RegisterPage() {
           required
         />
 
-        {/* Input Password & Strength Meter (Poin 6) */}
+        {}
         <div className="relative">
           <input
             type={showPassword ? 'text' : 'password'}
@@ -124,13 +117,13 @@ export default function RegisterPage() {
           </button>
         </div>
 
-        {/* Visual Strength Bar */}
+        {}
         <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden mt-1">
           <div className={`h-full transition-all duration-500 ${getStrengthColor()}`} style={{ width: `${strength}%` }}></div>
         </div>
         <p className="text-[10px] text-gray-500">Strength: {strength}%</p>
 
-        {/* Confirm Password (Poin 5) */}
+        {}
         <div className="relative">
           <input
             type={showConfirmPassword ? 'text' : 'password'}
@@ -144,7 +137,7 @@ export default function RegisterPage() {
           </button>
         </div>
 
-        {/* Captcha Section */}
+        {}
         <div className="flex items-center space-x-3 bg-gray-100 p-2 rounded border">
           <span className="font-mono font-bold italic line-through tracking-widest text-black select-none">{captcha}</span>
           <button type="button" onClick={generateCaptcha} className="text-blue-600"><RefreshCcw size={18} /></button>
